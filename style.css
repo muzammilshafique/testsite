@@ -1,0 +1,209 @@
+:root {
+    --bg: #050505;
+    --text: #ffffff;
+    --accent: #ff003c;
+    --gray: #666;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 30px 50px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-contact {
+    border: 1px solid var(--accent);
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.btn-contact:hover { background: var(--accent); }
+
+/* Sections */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    line-height: 0.85;
+}
+
+.hero h1 { font-size: 10vw; }
+.hero h1 span { display: block; color: var(--accent); }
+
+/* Horizontal Scroll */
+.horizontal-wrapper { overflow: hidden; }
+
+.work-container {
+    display: flex;
+    width: 300%;
+    height: 100vh;
+}
+
+.project {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.project-img {
+    width: 50%;
+    height: 60%;
+    background: #111;
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project:hover img { opacity: 1; transform: scale(1.05); }
+
+.project-info {
+    position: absolute;
+    z-index: 2;
+    left: 10%;
+}
+
+.project-info h2 { font-size: 6vw; pointer-events: none; }
+.red-text { color: var(--accent); }
+
+/* Footer */
+footer {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top, #1a0005, var(--bg));
+    text-align: center;
+}
+
+.footer-content h2 { font-size: 8vw; margin-bottom: 40px; }
+
+.footer-links span {
+    margin: 0 20px;
+    color: var(--gray);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-links span:hover { color: var(--accent); }
+
+.copyright { margin-top: 100px; color: #333; font-size: 0.8rem; }
+
+/* Cursor */
+.cursor {
+    width: 15px; height: 15px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Styling the Project Cards instead of Images */
+/* Position the Section Title (Project Alpha, etc.) */
+.project-info {
+    position: absolute;
+    top: 15%;
+    left: 5%; /* Aligned further to the left */
+    z-index: 1;
+}
+
+.project-info h2 {
+    font-size: 8vw;
+    opacity: 0.8; /* Increased opacity as requested */
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: left; /* Explicit left alignment */
+}
+
+/* Updated Project Card with Light Grey Border */
+.project-card {
+    width: 45%;
+    min-height: 400px;
+    background: rgba(255, 255, 255, 0.02);
+    /* Light grey border by default */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    margin-top: 50px;
+}
+
+/* Hover State: Border turns Red */
+.project-card:hover {
+    border-color: var(--accent); /* Red border on hover */
+    transform: translateY(-10px);
+    background: rgba(255, 0, 60, 0.05); /* Subtle red tint on hover */
+}
+
+/* Red text variant for Project Beta */
+.red-text {
+    color: var(--accent);
+    opacity: 0.9 !important; /* High visibility for the red title */
+}
+
+/* Ensure content inside card is left-aligned */
+.project-card h3,
+.project-card p,
+.card-header,
+.card-footer {
+    text-align: left;
+}
