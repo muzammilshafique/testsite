@@ -81,59 +81,152 @@ h2 {
     color: var(--accent);
 }
 
-/* Horizontal Scroll */
-.horizontal-wrapper {
-    overflow: hidden;
-}
-
-.work-container {
+/* ===================== */
+/*   Orbit Section       */
+/* ===================== */
+.orbit-section {
+    padding: 100px 0;
+    min-height: 100vh;
     display: flex;
-    width: 300%;
-    height: 100vh;
-}
-
-.project {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    position: relative;
-}
-
-.project-img {
-    width: 50%;
-    height: 60%;
-    background: #111;
+    justify-content: center;
     overflow: hidden;
 }
 
-.project-img img {
+.orbit-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 4vw;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: 4px;
+}
+
+.orbit-title span {
+    color: var(--accent);
+}
+
+.orbit-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+.orbit-ring {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.6;
-    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: orbitSpin 15s linear infinite;
 }
 
-.project:hover img {
-    opacity: 1;
-    transform: scale(1.05);
+.orbit-ring:hover {
+    animation-play-state: paused;
 }
 
-.project-info {
+.orbit-item {
     position: absolute;
-    z-index: 2;
-    left: 10%;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    transform:
+        rotate(calc(var(--i) * 120deg)) translateY(-260px) rotate(calc(var(--i) * -120deg));
+    margin-left: -160px;
+    margin-top: -130px;
+    animation: orbitCounterSpin 15s linear infinite;
 }
 
-.project-info h2 {
-    font-size: 6vw;
-    pointer-events: none;
+.orbit-ring:hover .orbit-item {
+    animation-play-state: paused;
 }
 
-.red-text {
-    color: var(--accent);
+@keyframes orbitSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbitCounterSpin {
+    from {
+        transform: rotate(calc(var(--i) * 120deg)) translateY(-260px) rotate(calc(var(--i) * -120deg + 0deg));
+    }
+
+    to {
+        transform: rotate(calc(var(--i) * 120deg)) translateY(-260px) rotate(calc(var(--i) * -120deg - 360deg));
+    }
+}
+
+/* Project Cards */
+.project-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    transform: scale(1.15);
+    background: rgba(255, 0, 60, 0.08);
+    box-shadow: 0 30px 80px rgba(255, 0, 60, 0.2);
+    z-index: 10;
+}
+
+.card-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gray);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.project-card h3 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.project-card p {
+    font-size: 0.8rem;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.card-footer {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Ensure content inside card is left-aligned */
+.project-card h3,
+.project-card p,
+.card-header,
+.card-footer {
+    text-align: left;
 }
 
 /* Footer */
@@ -177,70 +270,6 @@ footer {
     position: fixed;
     pointer-events: none;
     z-index: 999;
-}
-
-/* Styling the Project Cards instead of Images */
-/* Position the Section Title (Project Alpha, etc.) */
-.project-info {
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    /* Aligned further to the left */
-    z-index: 1;
-}
-
-.project-info h2 {
-    font-size: 8vw;
-    opacity: 0.8;
-    /* Increased opacity as requested */
-    pointer-events: none;
-    white-space: nowrap;
-    text-align: left;
-    /* Explicit left alignment */
-}
-
-/* Updated Project Card with Light Grey Border */
-.project-card {
-    width: 45%;
-    min-height: 400px;
-    background: rgba(255, 255, 255, 0.02);
-    /* Light grey border by default */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 4px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-    margin-top: 50px;
-}
-
-/* Hover State: Border turns Red */
-.project-card:hover {
-    border-color: var(--accent);
-    /* Red border on hover */
-    transform: translateY(-10px);
-    background: rgba(255, 0, 60, 0.05);
-    /* Subtle red tint on hover */
-}
-
-/* Red text variant for Project Beta */
-.red-text {
-    color: var(--accent);
-    opacity: 0.9 !important;
-    /* High visibility for the red title */
-}
-
-/* Ensure content inside card is left-aligned */
-.project-card h3,
-.project-card p,
-.card-header,
-.card-footer {
-    text-align: left;
 }
 
 /* Animated Gradient Text */
@@ -303,49 +332,42 @@ footer {
         padding: 0 20px;
     }
 
-    /* Projects — stack vertically */
-    .horizontal-wrapper {
-        overflow: visible;
-    }
-
-    .work-container {
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-    }
-
-    .project {
-        width: 100%;
-        height: auto;
-        min-height: 80vh;
-        flex-direction: column;
+    /* Orbit — stack vertically on mobile */
+    .orbit-section {
         padding: 60px 20px;
+        min-height: auto;
     }
 
-    .project-info {
+    .orbit-title {
+        font-size: 7vw;
+        margin-bottom: 40px;
+    }
+
+    .orbit-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .orbit-ring {
+        animation: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .orbit-item {
         position: relative;
         top: unset;
         left: unset;
-        margin-bottom: 20px;
-    }
-
-    .project-info h2 {
-        font-size: 12vw;
+        width: 90%;
+        margin: 0;
+        transform: none;
+        animation: none;
     }
 
     .project-card {
-        width: 90%;
-        min-height: auto;
-        padding: 30px 24px;
-        margin-top: 0;
-    }
-
-    .project-card h3 {
-        font-size: 1.1rem;
-    }
-
-    .project-card p {
-        font-size: 0.85rem;
+        width: 100%;
     }
 
     /* Footer */

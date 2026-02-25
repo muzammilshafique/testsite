@@ -15,18 +15,27 @@ gsap.from(".hero h1 span", {
     ease: "power4.out"
 });
 
-// Horizontal Scroll
-let sections = gsap.utils.toArray(".project");
+// Orbit Section Reveal
+gsap.from(".orbit-title", {
+    scrollTrigger: {
+        trigger: ".orbit-section",
+        start: "top 80%",
+    },
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out"
+});
 
-gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".horizontal-wrapper",
-            pin: true,
-            scrub: 1,
-            end: () => "+=" + document.querySelector(".work-container").offsetWidth
-        }
+gsap.from(".orbit-container", {
+    scrollTrigger: {
+        trigger: ".orbit-section",
+        start: "top 60%",
+    },
+    scale: 0.8,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power3.out"
 });
 
 // Footer Text Reveal
@@ -39,31 +48,4 @@ gsap.from("footer h2", {
     opacity: 0,
     duration: 1,
     ease: "power3.out"
-});
-
-// Add this to your main.js after the horizontal scroll trigger
-gsap.utils.toArray(".project-card").forEach(card => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: "left center", // Triggered as the card enters the horizontal view
-            containerAnimation: scrollTween, // Essential for horizontal triggers
-        },
-        scale: 0.8,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out"
-    });
-});
-
-// Update your horizontal scroll variable slightly to allow for the card animation
-const scrollTween = gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1),
-                            ease: "none",
-                            scrollTrigger: {
-                                trigger: ".horizontal-wrapper",
-                                pin: true,
-                                scrub: 1,
-                                end: () => "+=" + document.querySelector(".work-container").offsetWidth
-                            }
 });
